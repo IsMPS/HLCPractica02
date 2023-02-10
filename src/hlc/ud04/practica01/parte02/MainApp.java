@@ -7,6 +7,7 @@ import hlc.ud04.appsec.interfaz.consola.InterfazConsola;
 import hlc.ud04.appsec.persistencia.GestorPersistenciaSqlite;
 import hlc.ud04.appsec.seguridad.core.SistemaSeguridad;
 import hlc.ud04.practica01.parte01.autenticador.AutenticadorPasswordSqlite;
+import hlc.ud04.practica01.parte01.controlacceso.ControlAccesoFichero;
 import hlc.ud04.practica01.parte01.controlacceso.ControlAccesoSimple;
 import hlc.ud04.practica01.parte01.seguridad.SistemaSeguridadPasswordSqlite;
 import hlc.ud04.practica01.parte02.autenticador.AutenticadorTOTPSqlite;
@@ -24,7 +25,7 @@ public class MainApp {
     Clientes clientes = new Clientes(gestor);
     
     // Usamos nuestro sistema de seguridad
-    SistemaSeguridad sistemaSeguridad = new SistemaSeguridadTOTP(new AutenticadorTOTPSqlite(DATABASE_PATH), new ControlAccesoSimple());
+    SistemaSeguridad sistemaSeguridad = new SistemaSeguridadTOTP(new AutenticadorTOTPSqlite(DATABASE_PATH), new ControlAccesoFichero());
     
     // Creamos interfaz de usuario de tipo consola
     Interfaz interfaz = new InterfazConsola(clientes, sistemaSeguridad);
