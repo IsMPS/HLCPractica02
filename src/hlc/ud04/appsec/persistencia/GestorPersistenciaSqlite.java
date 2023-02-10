@@ -142,4 +142,33 @@ public class GestorPersistenciaSqlite implements GestorPersistencia {
     return DriverManager.getConnection(JDBC_PREFIX + database);
   }
 
+@Override
+public String obtenerPermisosPorId(long id) {
+	 Connection conn = null;
+	    ResultSet rs = null;
+	    try {
+	      conn = getConnection();
+	      Statement statement = conn.createStatement();
+	      rs = statement.executeQuery("SELECT permisos FROM permisos WHERE id = "+ id + ";");
+	      String permiso = null;
+	      if (rs.next()) {
+	        permiso =rs.getString("permisos");
+	      }
+	      return permiso;
+	    } catch (SQLException e) {
+	      throw new GestorPersistenciaException(e);
+	    } finally {
+	      if (rs != null) {
+	        try {
+	          rs.close();
+	        } catch (SQLException e) {}
+	      }
+	      if (conn != null) {
+	        try {
+	          conn.close();
+	        } catch (SQLException e) {}
+	      }
+	    }
+}
+
 }

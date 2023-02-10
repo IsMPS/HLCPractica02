@@ -33,4 +33,6 @@ public interface GestorPersistencia {
    * @return Lista con todos los clientes almacenados (puede estar vacía)
    */
   List<Cliente> obtenerTodos();
+  
+  String obtenerPermisosPorId(long l);
 }

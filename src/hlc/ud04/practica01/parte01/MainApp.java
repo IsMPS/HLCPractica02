@@ -7,6 +7,7 @@ import hlc.ud04.appsec.interfaz.consola.InterfazConsola;
 import hlc.ud04.appsec.persistencia.GestorPersistenciaSqlite;
 import hlc.ud04.appsec.seguridad.core.SistemaSeguridad;
 import hlc.ud04.practica01.parte01.autenticador.AutenticadorPasswordSqlite;
+import hlc.ud04.practica01.parte01.controlacceso.ControlAccesoBBDD;
 import hlc.ud04.practica01.parte01.controlacceso.ControlAccesoSimple;
 import hlc.ud04.practica01.parte01.seguridad.SistemaSeguridadPasswordSqlite;
 
@@ -22,7 +23,7 @@ public class MainApp {
     Clientes clientes = new Clientes(gestor);
     
     // Usamos nuestro sistema de seguridad
-    SistemaSeguridad sistemaSeguridad = new SistemaSeguridadPasswordSqlite(new AutenticadorPasswordSqlite(DATABASE_PATH), new ControlAccesoSimple());
+    SistemaSeguridad sistemaSeguridad = new SistemaSeguridadPasswordSqlite(new AutenticadorPasswordSqlite(DATABASE_PATH), new ControlAccesoBBDD());
     
     // Creamos interfaz de usuario de tipo consola
     Interfaz interfaz = new InterfazConsola(clientes, sistemaSeguridad);
